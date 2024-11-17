@@ -323,7 +323,8 @@ textarea.input {
   display: grid;
   grid-template-columns: 1fr 1rem;
   border-radius: .5rem;
-  background: #fff
+  background: #fff;
+  transition: all .3s
 }
 .item-dashboard.--active {
   background: #5932ea;
@@ -347,7 +348,8 @@ textarea.input {
   font-weight: 400;
   letter-spacing: -.00875rem;
   color: #9197b3;
-  line-height: 1.5
+  line-height: 1.5;
+  transition: color .3s
 }
 .item-dashboard__link span {
   -webkit-padding-end: 1.5rem;
@@ -377,6 +379,11 @@ textarea.input {
 }
 .item-dashboard__more::before {
   font-size: .5rem;
+  transition: -webkit-transform .3s;
+  transition: transform .3s;
+  transition: transform .3s,-webkit-transform .3s
+}
+.--active .item-dashboard__more::before {
   -webkit-transform: rotate(-90deg);
   transform: rotate(-90deg)
 }
@@ -668,10 +675,6 @@ textarea.input {
   visibility: hidden;
   opacity: 0
 }
-.dashboard__item:not(:last-child) {
-  -webkit-margin-after: 1.125rem;
-  margin-block-end: 1.125rem
-}
 ._watcher-view .dashboard__item {
   -webkit-animation: showItem .7s ease-out forwards;
   animation: showItem .7s ease-out forwards
@@ -796,6 +799,10 @@ textarea.input {
   }
   .dashboard__body {
     max-inline-size: 19.125rem
+  }
+  .dashboard__item:not(:last-child) {
+    -webkit-margin-after: 1.125rem;
+    margin-block-end: 1.125rem
   }
   .column-dashboard {
     inline-size: 70.8125rem;
@@ -946,6 +953,12 @@ textarea.input {
   }
 }
 @media (max-width:33.75em) {
+  .item-dashboard {
+    border: .125rem solid #9197b3
+  }
+  .item-dashboard__icon {
+    display: none
+  }
   .sub-item {
     -webkit-padding-before: .625rem;
     padding-block-start: .625rem
@@ -961,6 +974,14 @@ textarea.input {
     flex-grow: 1;
     inline-size: 100%;
     padding-block: 1.25rem
+  }
+  .dashboard__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(9.375rem,1fr));
+    gap: .625rem
+  }
+  .column-dashboard {
+    row-gap: .9375rem
   }
 }
 @media (max-width:29.99875em) {
@@ -986,5 +1007,12 @@ textarea.input {
   .button--red:hover {
     color: #000;
     background: #df0404
+  }
+  .item-dashboard:hover {
+    border: .125rem solid #5932ea
+  }
+  .item-dashboard:hover .item-dashboard__more::before {
+    -webkit-transform: rotate(-90deg);
+    transform: rotate(-90deg)
   }
 }
